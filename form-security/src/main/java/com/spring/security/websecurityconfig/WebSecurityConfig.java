@@ -2,8 +2,6 @@ package com.spring.security.websecurityconfig;
 
 
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +12,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.spring.security.successhandler.CustomizeAuthenticationSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	CustomizeAuthenticationSuccessHandler customSuccessHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -25,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/", "/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
-            .formLogin()
+            .formLogin().successHandler(customSuccessHandler)
                 .loginPage("/login")
                 .permitAll()
                 .and()
@@ -41,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN").build());
+        manager.createUser(users.username("admin").password("password").roles("ADMIN").build());
         //System.out.println("USER ROLE NAME::::"+manager);
         return manager;
     }
