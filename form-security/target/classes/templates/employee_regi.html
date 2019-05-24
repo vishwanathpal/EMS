@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Spring Security Example </title>
+        <title>employee</title>
     </head>
     <body>
         <div th:if="${param.error}">
@@ -11,7 +11,8 @@
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
-        <form th:action="@{/registration_User_admin}" method="post">
+        <div>Employee registration</div>
+        <form th:action="@{/employee_regi}" method="post">
             <div><label> ID: <input type="text" name="id"/> </label></div>
             <div><label> First name: <input type="text" name="first_name"/> </label></div>
             <div><label> Last name: <input type="text" name="last_name"/> </label></div>
