@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h4>Register user</h4>
+	<h4 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h4>
 	<h3>==============</h3>
       <a href="/employee_regi">Employ</a>	<a href="/admin_regi">Admin</a>
 </body>

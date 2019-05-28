@@ -9,5 +9,4 @@ public class FormSecurityApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FormSecurityApplication.class, args);
 	}
-
 }

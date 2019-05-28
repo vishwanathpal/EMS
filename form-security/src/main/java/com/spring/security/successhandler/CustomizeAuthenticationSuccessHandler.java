@@ -39,9 +39,9 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         }
 		
 		if(admin){
-			response.sendRedirect("/hello");
+			response.sendRedirect("/admin_view");
 	        }else{
-	        	response.sendRedirect("/user");
+	        	response.sendRedirect("/employee_view");
 	        }
 		//logger.info("AT onAuthenticationSuccess(...) function!"+admin);
 	}

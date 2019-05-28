@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.ui.ModelMap;
+
 @Entity
 @Table
 public class employee {
@@ -37,10 +39,27 @@ public class employee {
     private String role;
 
 	
-	//constructor
+	
+//	public employee(Integer id, String first_name, String last_name, String dob, String email, String password,
+//			String department, String role) {
+//		super();
+//		this.id = id;
+//		this.first_name = first_name;
+//		this.last_name = last_name;
+//		this.dob = dob;
+//		this.email = email;
+//		this.password = password;
+//		this.department = department;
+//		this.role = role;
+//	}
+
 	public employee() {
-		
+		// TODO Auto-generated constructor stub
 	}
+
+	/*public employee(ModelMap model) {
+		// TODO Auto-generated constructor stub
+	}*/
 
 	public Integer getId() {
 		return id;
@@ -105,5 +124,9 @@ public class employee {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String toString() {
+        return String.format("{id=%s, first_name='%s', last_name='%s', date_birth='%s', email='%s', password='%s', department='%s', role='%s'}", id, first_name, last_name, dob, email, password, department, role);
+    }
 
 }

@@ -1,7 +1,6 @@
 package com.spring.security.websecurityconfig;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	CustomizeAuthenticationSuccessHandler customSuccessHandler;
+	
+	/*
+	@Autowired
+	DataSource dataSource;
 
+	@Autowired
+	public void  configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+		
+		auth.jdbcAuthentication().dataSource(dataSource);
+		
+	} */
+	
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
         http
@@ -33,8 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
-        
+                .permitAll();        
     }	
 	
 	//reference: https://www.mkyong.com/spring-boot/spring-security-there-is-no-passwordencoder-mapped-for-the-id-null/
