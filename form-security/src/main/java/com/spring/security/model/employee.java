@@ -128,5 +128,6 @@ public class employee {
 	public String toString() {
         return String.format("{id=%s, first_name='%s', last_name='%s', date_birth='%s', email='%s', password='%s', department='%s', role='%s'}", id, first_name, last_name, dob, email, password, department, role);
     }
-
+//reference for validation	
+//https://www.onlinetutorialspoint.com/spring-boot/spring-boot-validation-login-form-example.html
 }
