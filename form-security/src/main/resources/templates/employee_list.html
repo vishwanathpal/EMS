@@ -1,52 +1,243 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>employee</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html >    
+<html xmlns:th="http://www.thymeleaf.org" 
     
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstraps/3.3.5/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
+<head>
+<meta charset="utf-8">
+<title>all employee</title>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-	<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-			th:href="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-	<link href="../static/css/spring-core.css"
-      	  th:href="@{css/spring-core.css}" rel="stylesheet" media="screen">
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
 </head>
 <body>
-	<div class="container">
-	
-	<div th:if="${not #lists.isEmpty(employee_list)}">
-	<table class="table table-striped">
-		<tr>
-			<th>Id</th>
-			<th>First name</th>
-			<th>Last name</th>
-			<th>Birth date</th>
-			<th>Email</th>
-			<th>Password</th>
-			<th>Department</th>
-			<th>Role</th>
-		</tr>
+<h3>All Employee</h3>
 
-		
-			<tr th:each="employee : ${employee_list}">
-			<td>${employee.id}</td>
-			<td>${employee.first_name}</td>
-			<td>${employee.first_name}</td>
-			<td>${employee.first_name}</td>
-			<td>${employee..id}</td>
+<table id="customers">
+						
+							<tr>
+								<td>Id</td>								
+								<td>First Name</td>
+								<td>Last Name</td>	
+<!-- 								<td>Birth date</td>							 -->
+								<td>Email</td>								
+								<td>Password</td>
+								<td>Department</td>
+								<td>Role</td>								
+							</tr>
+						
+						
+							<!-- <c:forEach items="${users}" var="user" > -->
+								<tr th:each="user : ${empList}">
+									<td th:text="${user?.id}">id</td>
+									<td th:text="${user?.first_name}">first_name</td>
+									<td th:text="${user?.last_name}">last_name</td>
+<!-- 									<td th:text="${user?.date_birth}">date_birth</td> -->
+									<td th:text="${user?.email}">email</td>
+									<td th:text="${user?.password}">password</td>
+									<td th:text="${user?.department}">department</td>
+									<td th:text="${user?.role}">role</td>
+								</tr>
+							<!-- </c:forEach> -->
+						 
+					</table>
+
+<!-- 	<div >
+			<div>
+				<a href="/welcome">Helios Solutions</a>
+				<div >
+					<ul >
+						<li><a href="/login">Login</a></li>
+						<li><a href="/register">New Registration</a></li>
+						<li><a href="/all_employee">All Users</a></li>
+					</ul>
+				</div>
+			</div>
+	</div> -->
+	
+	<!-- <c:choose>
+	<c:when test="${mode=='MODE-HOME' }">
+	<div class="container" id="homediv">
+		<div class="jumbotron text-center">
+			<h1>Welcome to Helios Solutions</h1>
+		</div>
+	</div>
+	</c:when> -->
+
+		<!-- <c:when test="${mode=='MODE-REGISTER' }">
+		<div class="container text-center">
+		<h3>New Registration</h3>
+		<hr>
+		<form class="form-horizontal" method="POST" action="save-user">
+			<input type="hidden" name="id" value="${user.id }" />
+			<div class="form-group">
+				<label class="control-label col-md-3">User Name</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" name="username"
+						value="${user.username }" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-3">First Name</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" name="firstname"
+						value="${user.firstname }" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-3">Last Name</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" name="lastname"
+						value="${user.lastname }" />
+				</div>
+			</div>
 			
-			</tr>
-		
+			<div class="form-group">
+				<label class="control-label col-md-3">Password</label>
+				<div class="col-md-7">
+					<input type="password" class="form-control" name="password"
+						value="${user.password }" />
+				</div>
+			</div>
+			<div class="form-group ">
+				<input type="submit" class="btn btn-primary" value="Register" />
+			</div>
+		</form>
+	</div> -->
+	<!-- </c:when>
+	
+	<c:when test="${mode=='ALL-USERS' }"> -->
+<!-- 	<div class="container text-center" id="tasksDiv"> -->
+<!-- 				<h3>All Users</h3> -->
+<!-- 				<hr> -->
+<!-- 				<div class="table-responsive"> -->
+<!-- 					<table border="1" > -->
+<!-- 						<thead> -->
+<!-- 							<tr> -->
+<!-- 								<th>Id</th> -->
+<!-- 								<th>UserName</th> -->
+<!-- 								<th>FirstName</th> -->
+<!-- 								<th>LastName</th> -->
+<!-- 								<th>Delete</th> -->
+<!-- 								<th>Edit</th> -->
+<!-- 							</tr> -->
+<!-- 						</thead> -->
+<!-- 						<tbody> -->
+<!-- 							<c:forEach items="${users}" var="user" > -->
+<!-- 								<tr th:each="user : ${employee_list}"> -->
+<!-- 									<td>${user.id}</td> -->
+<!-- 									<td>${id.id}</td> -->
+<!-- 									<td>${first_name.first_name}</td> -->
+<!-- 									<td>${last_name}</td> -->
+<!-- 									<td><a href="/delete-user?id=${user.id}">DELETE<span class="glyphicon glyphicon-trash"></span></a></td> -->
+<!-- 									<td><a href="/edit-user?id=${user.id}">EDIT<span class="glyphicon glyphicon-pencil"></span></a></td> -->
+<!-- 								</tr> -->
+<!-- 							</c:forEach> -->
+<!-- 						</tbody> -->
+<!-- 					</table> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<!-- </c:when>
+			
+	<c:when test="${mode=='MODE_UPDATE' }">
+			<div class="container text-center">
+				<h3>Update User</h3>
+				<hr>
+				<form class="form-horizontal" method="POST" action="save-user">
+					<input type="hidden" name="id" value="${user.id }" />
+					<div class="form-group">
+						<label class="control-label col-md-3">Username</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="username"
+								value="${user.username }" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">First Name</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="firstname"
+								value="${user.firstname }" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Last Name</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="lastname"
+								value="${user.lastname }" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Password</label>
+						<div class="col-md-7">
+							<input type="password" class="form-control" name="password"
+								value="${user.password }" />
+						</div>
+					</div>
+					<div class="form-group ">
+						<input type="submit" class="btn btn-primary" value="Update" />
+					</div>
+				</form>
+			</div>
+		</c:when>
 
-	</table>
+		<c:when test="${mode=='MODE_LOGIN' }">
+			<div class="container text-center">
+				<h3>User Login</h3>
+				<hr>
+				<form class="form-horizontal" method="POST" action="/login-user">
+					<c:if test="${not empty error }">
+						<div class= "alert alert-danger">
+							<c:out value="${error }"></c:out>
+							</div>
+					</c:if>
+					<div class="form-group">
+						<label class="control-label col-md-3">Username</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="username"
+								value="${user.username }" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Password</label>
+						<div class="col-md-7">
+							<input type="password" class="form-control" name="password"
+								value="${user.password }" />
+						</div>
+					</div>
+					<div class="form-group ">
+						<input type="submit" class="btn btn-primary" value="Login" />
+					</div>
+				</form>
+			</div>
+		</c:when>
+	</c:choose> -->
+
 	
-	</div>
+<!-- Optional JavaScript -->
 	
+<!-- 	<script src="static/js/jquery-1.11.1.min.js"></script> -->
+<!-- 	<script src="static/js/bootstrap.min.js"></script> -->
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<!--     <script src="/resources/static/js/bootstrap.min.js"></script> -->
 	
-	
-	</div>
 </body>
 </html>

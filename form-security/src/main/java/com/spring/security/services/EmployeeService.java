@@ -3,12 +3,15 @@ package com.spring.security.services;
 import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import com.spring.security.model.employee;
 import com.spring.security.repository.EmployeeRepository;
 
-@Service
-@Transactional
+//@Service
+//@Transactional
+@Repository
 public class EmployeeService {
 
 	@Resource

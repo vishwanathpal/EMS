@@ -3,26 +3,113 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>employee</title>
+
+<style>
+input[type=text], select {
+  width: 50%;
+  padding: 5px 2px;
+  margin: 8px 5;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+input[type=password], select {
+  width: 50%;
+  padding: 5px 2px;
+  margin: 8px 6;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+input[type=email], select {
+  width: 50%;
+  padding: 5px 2px;
+  margin: 8px 6;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+input[type=submit] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 10px;
+  margin: 8px 5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-items: center;
+}
+
+input[type=reset] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 10px;
+  margin: 8px 5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-items: center;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+input[type=reset]:hover {
+  background-color: #ff0000;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.center {
+  margin: auto;
+  width: 25%;
+  border: 1px solid #73AD21;
+  padding: 8px;
+  align-items: centre;
+  }
+p{
+    align-items: centre;
+}
+</style>
+        
     </head>
     <body>
-        <div th:if="${param.error}">
+        <!-- <div th:if="${param.error}">
             Invalid username and password.
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
-        </div>
-        <div>Employee registration</div>
+        </div> -->
+        <h4 style="text-align: center;">Employee registration</h4>
+       
         <form th:action="@{/employee_regi}" method="post">
+            <div class="center">
             <div><label> ID: <input type="text" name="id"/> </label></div>
-            <div><label> First name: <input type="text" name="firstname"/> </label></div>
-            <div><label> Last name: <input type="text" name="lastname"/> </label></div>
-            <div><label> Birthday date: <input type="text" name="dob"/> </label></div>
-            <div><label> Email: <input type="text" name="email"/> </label></div>
-            <div><label> Password: <input type="text" name="password"/> </label></div>
-            <div><label> Department: <input type="text" name="department"/> </label></div>
-            <div><label> User role: <input type="text" name="role"/> </label></div>
-                        
+            <div><label> First name: <input type="text" name="firstname" placeholder="first name"/> </label></div>
+            <div><label> Last name: <input type="text" name="lastname" placeholder="last name"/> </label></div>
+            <div><label> Birthday date: <input type="text" name="dob" placeholder="date of birth"/> </label></div>
+            <div><label> Email: <input type="email" name="email" placeholder="email"/> </label></div>
+            <div><label> Password: <input type="password" name="password" placeholder="password"/> </label></div>
+            <div><label> Department: <input type="text" name="department" placeholder="department name"/> </label></div>
+            <div><label> User role: <input type="text" name="role" placeholder="user role"/> </label></div>
+            </div>            
             <p><input type="submit" value="Submit"/> <input type="reset" value="Reset" /></p>
         </form>
+       
     </body>
 </html>
