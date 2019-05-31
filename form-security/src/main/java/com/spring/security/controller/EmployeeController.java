@@ -47,13 +47,14 @@ public class EmployeeController {
 	 * return "welcomepage"; }
 	 */
 	
-	@RequestMapping(value = "/employee_list", method = RequestMethod.GET)
-	private String getEmployeeList(Model model)
-	{
-		List<employee> empList = employeeService.showAllUsers();
-		model.addAttribute("empList", empList);
-		System.out.println("Employee records::::::"+model);
-		
-		return "employee_list";
-	}
+	//reference: https://www.youtube.com/watch?v=w9mFOUFNmfQ
+//	@RequestMapping(value = "/employee_list", method = RequestMethod.GET)
+//	private String getEmployeeList(Model model)
+//	{
+//		List<employee> empList = employeeService.showAllUsers();
+//		model.addAttribute("empList", empList);
+//		System.out.println("Employee records::::::"+model);
+//		
+//		return "employee_list";
+//	}
 }

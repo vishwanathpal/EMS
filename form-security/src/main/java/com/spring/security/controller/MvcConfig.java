@@ -1,34 +1,26 @@
 package com.spring.security.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.spring.security.model.employee;
 import com.spring.security.repository.EmployeeRepository;
 import com.spring.security.services.EmployeeService;
 
 //@Configuration
-//@Controller
-@RestController
+@Controller
+//@RestController
 public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
@@ -51,10 +43,10 @@ public class MvcConfig implements WebMvcConfigurer {
 //	@Autowired
 //	employee empClass;
 
-	private static List<employee> empList = new ArrayList<employee>();
+	/*private static List<employee> empList = new ArrayList<employee>();
 
 	private static final Logger log = LoggerFactory.getLogger(MvcConfig.class);
-	/*
+	
 	 * 
 	 * 
 	 * /*@PostMapping("/registration_User_admin") public String
@@ -92,13 +84,15 @@ public class MvcConfig implements WebMvcConfigurer {
 	 * department, role); employeeService.saveMyUser(emp); return"User saved."; }
 	 */
 
-	@RequestMapping(value = "/employee_regi", method = RequestMethod.GET) // Map ONLY GET Requests
+	//Show login form which Map ONLY GET Requests
+	@RequestMapping(value = "/employee_regi", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		return new ModelAndView("employee_regi", "employee_regi", new employee());
 	}
 
-	@RequestMapping(value = "/employee_regi") // Map POST Requests
-	public @ResponseBody String addNewEmployee(@RequestParam(value = "id", required = false) String id,
+	//Show employee registration page (employee_list) and perform the POST request
+	@RequestMapping(value = "/employee_regi")
+	public @ResponseBody RedirectView addNewEmployee(@RequestParam(value = "id", required = false) String id,
 			@RequestParam String firstname, @RequestParam String lastname, @RequestParam String dob,
 			@RequestParam String email, @RequestParam String password, @RequestParam String department,
 			@RequestParam String role) {
@@ -114,18 +108,50 @@ public class MvcConfig implements WebMvcConfigurer {
 		emp.setDepartment(department);
 		emp.setRole(role);
 		employeeRepo.save(emp);
-		return "Employee saved";
+		RedirectView rv = new RedirectView();
+		rv.setContextRelative(true);
+	    rv.setUrl("/employee_list");
+		return rv;
 	}
 	
+	@RequestMapping(value = "/employee_list", method = RequestMethod.GET)
+	private String getEmployeeList(Model model)
+	{
+		List<employee> empList = employeeService.showAllEmployee();
+		model.addAttribute("empList", empList);
+//		System.out.println("Employee records::::::"+model);
+		
+		return "employee_list";
+	}
+	
+//	@RequestMapping("/employee_list/{id}")
+//	public String deleteAEmployee(@PathVariable("id") int id, Model model) 
+//	{
+//		
+//		List<employee> empList = employeeService.showAllEmployee();
+//		model.addAttribute("empList", empList);
+//		System.out.println("Employee model::::::"+model);
+//		System.out.println("Employee ID::::::"+id);
+//		employeeRepo.deleteById(id);
+//		return "employee_list";
+//	}
+	
+//	@RequestMapping ("user")
+//    public String getStudent(@RequestParam  Integer id, Model model){
+//        employee savedUser = employeeRepo.deleteById(id);
+//        model.addAttribute("user", savedUser);
+//        return "user";
+//    }
+	
 	/*
-	//working
+	//working but not able to map data in HTML b/c dirt JSON data
 	@RequestMapping(value = "/employee_list", method = RequestMethod.GET) // Map ONLY GET Requests	
     public ModelAndView allEmployee() 
 	{
         return new ModelAndView("employee_list", "employee_list", employeeService.showAllUsers());
     }
 
-	//working
+	//working but return data in JSON format 
 	//reference::https://hellokoding.com/full-stack-crud-web-app-and-restful-apis-web-services-example-with-spring-boot-jpa-hibernate-mysql-vuejs-and-docker/	
 	@GetMapping("/employee_list")
 	public ResponseEntity<List<employee>> findAll()
@@ -135,13 +161,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	*/	
 //	::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 	
-//	@RequestMapping(value = "/employee_list", method = RequestMethod.GET)
-//	private String getEmployeeList(Model model)
-//	{
-//		List<employee> empList = employeeService.showAllUsers();
-//		model.addAttribute("empList", empList);
-//		return "employee_list";
-//	}
+	
 	
 	  /*
 	 * @RequestMapping(value = "/employee_list", method = RequestMethod.GET) // Map

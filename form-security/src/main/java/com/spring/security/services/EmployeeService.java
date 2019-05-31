@@ -1,6 +1,8 @@
 package com.spring.security.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -30,12 +32,23 @@ public class EmployeeService {
 	 * if ((counter + 1) % 500 == 0 || (counter + 1) == size) {
 	 * employeeRepository.saveAll(empList); empList.clear(); } counter++; } }
 	 */
-	public ArrayList<employee> showAllUsers() {
+	// Method to get list of employee records
+	public ArrayList<employee> showAllEmployee() {
 		ArrayList<employee> emps = new ArrayList<employee>();
 		for (employee emp : employeeRepository.findAll()) {
 			emps.add(emp);
 		}
 		return emps;
 	}
+	
+	public void deleteEmployee(int id) {
+		employeeRepository.deleteById(id);
+	}
+	
+	/*
+	 * public Optional<employee> employeeById(int id) {
+	 * 
+	 * return employeeRepository.findById(id); }
+	 */
 
 }

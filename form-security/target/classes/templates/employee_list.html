@@ -56,6 +56,7 @@
 									<td th:text="${user?.password}">password</td>
 									<td th:text="${user?.department}">department</td>
 									<td th:text="${user?.role}">role</td>
+									<td><a href="/user?id=${user?.id}">DELETE<span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 							<!-- </c:forEach> -->
 						 
